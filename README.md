@@ -23,6 +23,6 @@ Even Sum: 902499999050000000
 Odd Sum: 902500000000000000  
 Your Measured time was: 6 seconds.
 
-So by exploiting the ideas of multithreading and concurrency we are experiencing double the speed of execution. We've achieved the same task as earlier (counting the sum of even and odd numbers) but reduced the time by almost half just through the implementation of Multiple threads. 
+So by exploiting the ideas of multithreading and concurrency we have gone from 11 seconds to process the two tasks, down to just 6 seconds. We've achieved the same task as earlier (counting the sum of even and odd numbers) but reduced the time by almost half just through the implementation of Multiple threads. 
 
 Multithreading and Concurrency in C++ is an entire topic of its own, but very valuable to the modern C++ software engineer.
