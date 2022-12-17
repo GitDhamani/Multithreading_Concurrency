@@ -11,13 +11,13 @@ This is so that we know roughly how long the "algorithm" takes. Then we use the 
 The Function took: 5 seconds.  
 Your Measured time was: 5 seconds.
 
-In Program 2 we are doing some actual processing. We're counting all the odd and even numbers up to a fairly large number only being capable of held in an unsigned long long integer variable. This guarantees we should get a fairly significant amount of processing time of a few seconds. So we've replaced the thread sleep with two individual functions, one to count odd numbers and the other to count even. They are really only checking the least significant bit of the number to determine this. We measure how long the tasks take to complete in totality. On my 2.5Ghz CPU it takes approximately 11 seconds to complete. Typical program output:
+In Program 2 we are doing some actual processing. We're summing all the odd and even numbers up to a fairly large number only being capable of held in an unsigned long long integer variable. This guarantees we should get a fairly significant amount of processing time of a few seconds. So we've replaced the thread sleep with two individual functions, one to sum just the odd numbers and the other to sum the even. They are really only checking the least significant bit of the number to determine this. We measure how long the tasks take to complete in totality. On my 2.5Ghz CPU it takes approximately 11 seconds to finish. Typical program output:
 
 Odd Count: 902500000000000000  
 Even Count: 902499999050000000  
 Your Measured time was: 11 seconds.
 
-In Program 3 we now implement multi-threading and run each function in its own separate thread, so they execute in parallel. This now means both processes are running concurrently and we see the time now taken to complete both tasks is drastically reduced by 50%. Typical program output:
+In Program 3 we now implement multi-threading and run each function in its own separate thread, so they execute in parallel. This now means both processes are running concurrently. Typical program output:
 
 Even Sum: 902499999050000000  
 Odd Sum: 902500000000000000  
