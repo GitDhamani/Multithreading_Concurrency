@@ -3,7 +3,7 @@ How to Perform Multi-threading and Concurrency in Modern C++.
 
 In this repository I explore how to best make use of the Multithreading and concurrency abilities of Modern C++. 
 
-<b>Program1</b>: Here I lay the foundations of how to benchmark and measure the execution time of a set of tasks. I've simulated an algorithm that takes a random amount of time to perform, via the thread sleep method and then use the high resolution clock from the chrono library in order to verify this.
+<b><h5>Program1</h5></b>: Here I lay the foundations of how to benchmark and measure the execution time of a set of tasks. I've simulated an algorithm that takes a random amount of time to perform, via the thread sleep method and then use the high resolution clock from the chrono library in order to verify this.
 
 <b>Program2</b>: Here I implement two tasks executing in series, one after the other to sum the total number of odd and even numbers across a range. The benchmarking process from Program1 verifies it takes about 11 seconds to perform.
 
