@@ -1,28 +1,18 @@
 # Multithreading_Concurrency
 How to Perform Multi-threading and Concurrency in Modern C++.
 
-Ever since C++11 (C++0x), the C++ language has had support for multithreading and concurrency and has needed to rely less on platform APIs to perform true task switching. Modern hardware is more equipped these days to handle the demands of a well designed multithreaded application, especially on multi-core CPUs. 
+In this repository I explore how to best make use of the Multithreading and concurrency abilities of Modern C++. 
 
-The dangers with launching multiple threads and keeping track of them can be daunting. Anything from managing shared data to identifying and eliminating potential race hazards. Thankfully you can more or less manage issues through the use of mutex objects and lock guards to ensure sequential access when you need it. In this repository I show examples of how to employ multithreading and concurrency, including how a triple threaded application can perform parallel tasking across separate threads and then benchmark the performance.
+<b>Program1</b>: Here I lay the foundations of how to benchmark and measure the execution time of a set of tasks. I've simulated an algorithm that takes a random amount of time to perform, via the thread sleep method and then use the high resolution clock from the chrono library in order to verify this.
 
-Starting with Program 1 we look at how to measure the time taken for an algorithm to perform. In this case we're simulating processing time with the thread sleep method which pauses the thread for a random amount of time between 1-10 seconds.
-This is so that we know roughly how long the "algorithm" takes. Then we use the high precision clock to measure out how long the algorithm takes ourselves so we can do a comparison. So here we're just simply getting used to measuring time and laying the foundations of being able to show how much faster a multi-threaded application will be in the next phase. Here is the typical output:
+<h1>Program2</h1>: Here I implement two tasks executing in series, one after the other to sum the total number of odd and even numbers across a range. The benchmarking process from Program1 verifies it takes about 11 seconds to perform.
 
-The Function took: 5 seconds.  
-Your Measured time was: 5 seconds.
+<h2>Program3</h2>: Here I launch each task in its own thread and create a multi-threaded application. Since now the two tasks are performed in parallel we can see the benchmarked performance time drops to 6 seconds. So by sharing the processing across multiple threads we can drastically improve performance and provide low latency.
 
-In Program 2 we are doing some actual processing. We're summing all the odd and even numbers up to a fairly large number only being capable of held in an unsigned long long integer variable. This guarantees we should get a fairly significant amount of processing time of a few seconds. So we've replaced the thread sleep with two individual functions, one to sum just the odd numbers and the other to sum the even. They are really only checking the least significant bit of the number to determine this. We measure how long the tasks take to complete in totality. On my 2.5Ghz CPU it takes approximately 11 seconds to finish. Typical program output:
+Program4: Here I tackle the issue of Race Hazards when two or more threads are attempting to modify a critical section of code at the same time. Mutex locking ensures access is provided thread-sequentially, one at a time. This means the entirety of the two tasks are done, but not at the same time.
 
-Odd Count: 902500000000000000  
-Even Count: 902499999050000000  
-Your Measured time was: 11 seconds.
+Program5: The mutex lock in the previous program is blocking, meaning that threads that are not able to acquire the lock fast enough must hold in a waiting pattern until it becomes available. However there are times you want the thread to check if it can acquire the lock and if not, it can be free to attend to other tasks before trying again later. This program shows how to achieve this using the try_lock().
 
-In Program 3 we now implement multi-threading and run each function in its own separate thread, so they execute in parallel. This now means both processes are running concurrently. Typical program output:
+Program6: Here I look at locking multiple mutex objects at once. This comes up in producer/consumer scenarios where you have a thread whose job it is to collect data from other threads which are processing it. To do so, it must lock those mutex objects and access, or consume that data. In this example I have two data threads which are incrementing local variables. The consume thread will then lock the mutex objects in each thread so it can pull and reset the data before unlocking them both again.
 
-Even Sum: 902499999050000000  
-Odd Sum: 902500000000000000  
-Your Measured time was: 6 seconds.
-
-So by exploiting the ideas of multithreading and concurrency we have gone from 11 seconds to process the two tasks, down to just 6 seconds. We've achieved the same task as earlier (counting the sum of even and odd numbers) but reduced the time by almost half just through the implementation of Multiple threads. 
-
-Multithreading and Concurrency in C++ is an entire topic of its own, but very valuable to the modern C++ software engineer.
+Program7: Here I show how to launch multiple threads at once, but synchronise them using conditional variables. This allows a thread to sleep if certain conditions are not met in which case, it will also release any mutex locks it has previously acquired. When the conditions are more favourable and perhaps other threads have finished, the thread can be re-awakened and asked to re-acquire the lock and see if the conditions are now more suitable for it to continue. I use this paradigm in order to ensure that the first thread is always executed before the second thread.
