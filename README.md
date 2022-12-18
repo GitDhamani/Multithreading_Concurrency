@@ -5,9 +5,9 @@ In this repository I explore how to best make use of the Multithreading and conc
 
 <b>Program1</b>: Here I lay the foundations of how to benchmark and measure the execution time of a set of tasks. I've simulated an algorithm that takes a random amount of time to perform, via the thread sleep method and then use the high resolution clock from the chrono library in order to verify this.
 
-<h1>Program2</h1>: Here I implement two tasks executing in series, one after the other to sum the total number of odd and even numbers across a range. The benchmarking process from Program1 verifies it takes about 11 seconds to perform.
+<h5>Program2</h5>: Here I implement two tasks executing in series, one after the other to sum the total number of odd and even numbers across a range. The benchmarking process from Program1 verifies it takes about 11 seconds to perform.
 
-<h2>Program3</h2>: Here I launch each task in its own thread and create a multi-threaded application. Since now the two tasks are performed in parallel we can see the benchmarked performance time drops to 6 seconds. So by sharing the processing across multiple threads we can drastically improve performance and provide low latency.
+<h5>Program3</h5>: Here I launch each task in its own thread and create a multi-threaded application. Since now the two tasks are performed in parallel we can see the benchmarked performance time drops to 6 seconds. So by sharing the processing across multiple threads we can drastically improve performance and provide low latency.
 
 Program4: Here I tackle the issue of Race Hazards when two or more threads are attempting to modify a critical section of code at the same time. Mutex locking ensures access is provided thread-sequentially, one at a time. This means the entirety of the two tasks are done, but not at the same time.
 
