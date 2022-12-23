@@ -4,7 +4,7 @@
 #include <condition_variable>
 
 /*
-Program7: Here I show how to launch multiple threads at once, but synchronise them using conditional variables. 
+Program 7: Here I show how to launch multiple threads at once, but synchronise them using conditional variables. 
 This allows a thread to sleep if certain conditions are not met in which case, it will also release any mutex locks it 
 has previously acquired. When the conditions are more favourable and perhaps other threads have finished, the thread can 
 be re-awakened and asked to re-acquire the lock and see if the conditions are now more suitable for it to continue. 
