@@ -3,6 +3,14 @@
 #include <mutex>
 #include <chrono>
 
+/*
+Program6: Here I look at locking multiple mutex objects at once. This comes up in producer/consumer scenarios 
+where you have a thread whose job it is to collect data from other threads which are processing it. To do so, 
+it must lock those mutex objects and access, or consume that data. In this example I have two data threads 
+which are incrementing local variables. The consume thread will then lock the mutex objects in each thread 
+so it can pull and reset the data before unlocking them both again.
+*/
+
 std::mutex m1, m2;
 int x{0}, y{0}, sum{0};
 
