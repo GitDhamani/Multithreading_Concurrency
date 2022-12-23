@@ -5,7 +5,7 @@
 #include <ctime>
 
 /*
-Program1: Here I lay the foundations of how to benchmark and measure the execution time of a set of tasks. 
+Program 1: Here I lay the foundations of how to benchmark and measure the execution time of a set of tasks. 
 I've simulated an algorithm that takes a random amount of time to perform, via the thread sleep method and 
 then use the high resolution clock from the chrono library in order to verify this.
 */
