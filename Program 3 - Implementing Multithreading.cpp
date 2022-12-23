@@ -3,7 +3,7 @@
 #include <thread>
 
 /*
-Program3: Here I launch each task in its own thread and create a multi-threaded application. 
+Program 3: Here I launch each task in its own thread and create a multi-threaded application. 
 Since now the two tasks are performed in parallel we can see the benchmarked performance time drops to 6 seconds. 
 So by sharing the processing across multiple threads we can drastically improve performance and provide low latency.
 */
