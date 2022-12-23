@@ -1,6 +1,12 @@
 #include <iostream>
 #include <chrono>
 
+/*
+Program2: Here I implement two tasks executing in series, one after the other to sum 
+the total number of odd and even numbers across a range. The benchmarking process from Program1 
+verifies it takes about 11 seconds to perform.
+*/
+
 void countOdd()
 {
 	unsigned long long oddcount {};
