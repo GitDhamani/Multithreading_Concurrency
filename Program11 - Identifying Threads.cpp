@@ -3,6 +3,12 @@
 #include <mutex>
 #include <string>
 
+/*
+Program 11: Here is where I distinguish which thread has actually acquired the mutex lock on the critical sections 
+by pulling its Thread ID. It seems in general the main thread has the ID of 1, and then every new thread created 
+goes up sequentially.
+*/
+
 std::mutex m1;
 
 void RandomFunc(std::string str)
