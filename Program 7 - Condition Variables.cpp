@@ -15,7 +15,8 @@ It will acquire the mutex lock on m1. But then cv.wait will check the status if 
 to zero. If it is zero, then it will unlock the mutex and put its current thread to sleep because it knows it shouldn't be executing first now.
 
 If we had used cv.wait() with only the mutex parameter, it would have forced the current thread to automatically sleep until it was woken up
-later by being notified. The lambda acts as a predicate for it to decide whether it should sleep or continue in this case.
+later by being notified. The lambda acts as a predicate for it to decide whether it should sleep or continue in this case. As soon as it's 
+woken up it would attempt to acquire the lock automatically and continue.
 
 So now start1 can execute, do what it needs to and then when it's finished it will release the lock, set the boolean valuable to true and 
 sent a notification to the condition variable to wake up its thread and try again. Notify_one means the notification is sent out to only a
