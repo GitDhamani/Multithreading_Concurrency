@@ -16,7 +16,9 @@ to zero. If it is zero, then it will unlock the mutex and put its current thread
 
 If we had used cv.wait() with only the mutex parameter, it would have forced the current thread to automatically sleep until it was woken up
 later by being notified. The lambda acts as a predicate for it to decide whether it should sleep or continue in this case. As soon as it's 
-woken up it would attempt to acquire the lock automatically and continue.
+woken up it would attempt to acquire the lock automatically and continue. The reason we use a predicate is because condition variables can be
+woken up even when they are not notified in a process called "Spurious Wakeup" and so in order for us to verify the cause of the wake up we
+check the predicate to make sure we do indeed need to wake up and continue.
 
 So now start1 can execute, do what it needs to and then when it's finished it will release the lock, set the boolean valuable to true and 
 sent a notification to the condition variable to wake up its thread and try again. Notify_one means the notification is sent out to only a
